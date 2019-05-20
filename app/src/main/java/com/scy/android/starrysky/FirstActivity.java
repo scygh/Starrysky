@@ -1,5 +1,8 @@
 package com.scy.android.starrysky;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -33,12 +36,31 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
         mViews = new ArrayList<>();
         View view = getLayoutInflater().inflate(R.layout.pager_first,null);
         mViews.add(view);
-        mViews.add(getLayoutInflater().inflate(R.layout.activity_main,null));
+        View view1 = getLayoutInflater().inflate(R.layout.activity_main,null);
+        mViews.add(view1);
         mViewPager.setAdapter(new MyAdapter());
         nv= view.findViewById(R.id.emiter_nv);
         nan = view.findViewById(R.id.emiter_nan);
         nv.setOnClickListener(this);
         nan.setOnClickListener(this);
+        final TitanicTextView tv = view1.findViewById(R.id.my_text_view);
+
+        // set fancy typeface
+        tv.setTypeface(Typefaces.get(this, "Satisfy-Regular.ttf"));
+
+        // start animation
+        new Titanic().start(tv);
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                AnimatorSet set = new AnimatorSet();
+                set.playTogether(
+                        ObjectAnimator.ofFloat(tv,"rotation",0f,90f),
+                        ObjectAnimator.ofFloat(tv,"translationX",0f,180f)
+                );
+                set.setDuration(2000).start();
+            }
+        });
     }
 
     class MyAdapter extends PagerAdapter {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_sky"
+    android:background="@drawable/bgmain"
     tools:context=".MainActivity">
     <ImageView
         android:layout_width="wrap_content"
@@ -17,6 +17,16 @@
         android:layout_height="match_parent"
         />
 
+    <com.scy.android.starrysky.TitanicTextView
+        android:id="@+id/my_text_view"
+        android:text="丁诗仪我爱你"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:gravity="center"
+        android:textColor="#212121"
+        android:textSize="40sp"
+        />
 
 
 </FrameLayout>
